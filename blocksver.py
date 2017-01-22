@@ -186,7 +186,7 @@ def withPrefix(n, length):
     return formatSignif(n / (10 ** (p * 3)), length) + ' ' + prefixes[p]
 
 def formatNetworkHashRate(difficulty):
-    return withPrefix(difficulty * 2**48 / (0xffff * 600), 4) + 'h/s'
+    return withPrefix(difficulty * 2**48 / (0xffff * 150), 4) + 'h/s'
 
 def blocksToDateEstimate(blocks, height):
     return (height + blocks,

@@ -22,7 +22,7 @@ from datetime import datetime, timedelta
 from collections import namedtuple, Counter
 from fractions import Fraction as F
 
-RPC_CLIENT      = '/root/litecoin-0.13.2/bin/litecoin-cli'
+RPC_CLIENT      = 'litecoin-cli'
 CACHEFILE       = 'blocksver-1.py'
 WINDOW          = 2016
 THRESHOLD       = 1512
@@ -125,7 +125,7 @@ def updateCache(cache, window, hashesSize, bestHash, height, retrieveBlock):
                  mtp=mtp)
 
 def blocksToTimeStr(blocks):
-    days = F(blocks, 144)
+    days = F(blocks, 576)
     if days >= 365:
         val = days / 365
         unit = 'years'
@@ -186,13 +186,13 @@ def withPrefix(n, length):
     return formatSignif(n / (10 ** (p * 3)), length) + ' ' + prefixes[p]
 
 def formatNetworkHashRate(difficulty):
-    return withPrefix(difficulty * 2**48 / (0xffff * 600), 4) + 'h/s'
+    return withPrefix(difficulty * 2**48 / (0xffff * 150), 4) + 'h/s'
 
 def blocksToDateEstimate(blocks, height):
     return (height + blocks,
             blocks,
             (datetime.now().replace(microsecond=0) +
-             timedelta(days = blocks / 144.0)).strftime(DATETIME_FMT),
+             timedelta(days = blocks / 576.0)).strftime(DATETIME_FMT),
             blocksToTimeStr(blocks))
 
 def formatEvents(height, window):

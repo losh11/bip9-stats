@@ -22,10 +22,10 @@ from datetime import datetime, timedelta
 from collections import namedtuple, Counter
 from fractions import Fraction as F
 
-RPC_CLIENT      = 'bitcoin-cli'
-CACHEFILE       = 'blocksver-4fb3a07c6901.py'
+RPC_CLIENT      = '/root/litecoin-0.13.2/bin/litecoin-cli'
+CACHEFILE       = 'blocksver-1.py'
 WINDOW          = 2016
-THRESHOLD       = 1916
+THRESHOLD       = 1512
 HASHES_SIZE     = 6
 UNKNOWN_ID      = 'unknown'
 UNKNOWN_BIT     = '?'
@@ -197,7 +197,7 @@ def blocksToDateEstimate(blocks, height):
 
 def formatEvents(height, window):
     toWindowEnd = window - (height % window)
-    toHalving = 210000 - (height % 210000)
+    toHalving = 840000 - (height % 840000)
     return formatTable((('EVENT', 'AT-BLOCK', 'DELTA', 'EXPECTED-ON', 'EXPECTED-IN'),
                         ('retarget',) + blocksToDateEstimate(toWindowEnd, height),
                         ('halving',) + blocksToDateEstimate(toHalving, height)))
